@@ -6,9 +6,10 @@ var mainWindow = null;
 
 
 app.on('ready', function () {
+    const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
 
     // Initialize the window to our specified dimensions
-    mainWindow = new BrowserWindow({ width: 1200, height: 900, x:0, y:0 });
+    mainWindow = new BrowserWindow({width, height});
 
     // Tell Electron where to load the entry point from
     mainWindow.loadURL('file://' + __dirname + '/index.html');
@@ -17,7 +18,6 @@ app.on('ready', function () {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
-
 });
 
 

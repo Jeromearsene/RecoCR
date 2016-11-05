@@ -26,6 +26,7 @@
     "tesseract.js": "^1.0.10"
   },
   "scripts": {
+    "prestart": "grunt",
     "start": "electron app/Electron.js"
   }
 }
