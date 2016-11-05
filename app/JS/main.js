@@ -78,6 +78,11 @@ var _const = require('./const');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function handleFileSelect(evt) {
+    _const.DOM.divCircle.className = "";
+    _const.DOM.labelDropHere.classList.add("masked");
+    _const.DOM.divCircleProgress.classList.remove("masked");
+    _const.DOM.circlePercent.classList.remove("masked");
+
     var file = evt.target.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -86,11 +91,6 @@ function handleFileSelect(evt) {
 
     reader.onloadend = function (e) {
         (0, _recognize2.default)(e.target.result);
-
-        _const.DOM.divCircle.className = "";
-        _const.DOM.labelDropHere.classList.add("masked");
-        _const.DOM.divCircleProgress.classList.remove("masked");
-        _const.DOM.circlePercent.classList.remove("masked");
         _const.DOM.divCircleProgress.style.backgroundImage = 'url(\'' + e.target.result + '\')';
     };
 }
