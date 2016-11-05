@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tesseract</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<input type="file" id="dropzone"/>
+
+
+<div id="container-circle">
+        <div id="circle" class="circleAnimate">
+            <label id="dropHere-label" class="infos">Drop here</label>
+
+            <div id="circle-progress" class="masked"></div>
+            <div id="percent-circle" class="infos masked">0<p>%</p></div>
+
+            <div id="black"></div>
+
+        </div>
+</div>
+
+
+<div id="result" class="masked">
+    <span id="resultContent"></span>
+</div>
+
+
+<script src='../Modules/Module-tesseract.js'></script>
+<script src="JS/main.js"></script>
+
+</body>
+</html>
