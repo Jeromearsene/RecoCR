@@ -1,0 +1,56 @@
+#menu
+  z-index 100
+  width 8vh
+  height 8vh
+  position absolute
+  right 0
+  margin 2%
+  transform rotate(0deg)
+  transition .5s ease-in-out
+  cursor pointer
+
+#menu span
+  display block
+  position absolute
+  height 10%
+  width 100%
+  background aquamarine
+  border-radius 2vh
+  opacity 1
+  left 0
+  transform rotate(0deg)
+  transition .25s ease-in-out
+  
+#menu span:nth-child(1) 
+  top 0
+
+#menu span:nth-child(2),#menu span:nth-child(3) 
+  top 33%
+
+#menu span:nth-child(4) 
+  top 66%
+
+#menu.open span:nth-child(1) 
+  top 33%
+  width 0%
+  left 50%
+
+
+#menu.open span:nth-child(2) 
+  -webkit-transform: rotate(45deg)
+  -moz-transform: rotate(45deg)
+  -o-transform: rotate(45deg)
+  transform: rotate(45deg)
+
+
+#menu.open span:nth-child(3) 
+  -webkit-transform: rotate(-45deg)
+  -moz-transform: rotate(-45deg)
+  -o-transform: rotate(-45deg)
+  transform: rotate(-45deg)
+
+
+#menu.open span:nth-child(4) 
+  top: 18px
+  width: 0%
+  left: 50%

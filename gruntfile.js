@@ -6,7 +6,7 @@ module.exports = function(grunt)
                 options: {
                     transform: [['babelify', {presets: ['es2015']}]]
                 },
-                src: ['app/JS-src/main.js'],
+                src: ['dev/JS/main.js'],
                 dest: 'app/JS/main.js',
             }
         },
@@ -18,29 +18,46 @@ module.exports = function(grunt)
                     compress: true
                 },
                 files: {
-                    'app/style.css': 'app/Stylus/*styl'
+                    'app/style.css': 'dev/Stylus/*styl'
+                }
+            }
+        },
+
+
+        // Ajoute les préfixes CSS
+        postcss: {
+            options: {
+                processors: [
+                    require('autoprefixer')({browsers: ['> 0%']})
+                ]
+            },
+            dist: {
+                files: {
+                    'app/style.css': 'app/style.css'
                 }
             }
         },
 
 
         watch: {
-            scripts: {
-                files: 'app/JS-src/*.js',
+            js: {
+                files: 'dev/JS/*.js',
                 tasks: ["browserify"]
             },
-            stylus: {
-                files: ['app/Stylus/**/*'],
-                tasks: ['stylus'],
+            css: {
+                files: 'dev/Stylus/*styl',
+                tasks: ["css"],
                 options: {
                     livereload: true,
                 }
-            },
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default', ['browserify', 'stylus']);
+    grunt.registerTask('css', ['stylus', 'postcss']);
 };

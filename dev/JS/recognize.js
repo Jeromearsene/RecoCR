@@ -5,6 +5,8 @@ import drawCircle from './drawCircle';
 
 export default function recognize(image)
 {
+    var Tesseract = require('tesseract.js');
+
     let bool = false;
 
     Tesseract.recognize(image)
