@@ -1,6 +1,7 @@
 const electron = require('electron');
-const app = require('app');
-const BrowserWindow = require('browser-window')
+const {ipcMain, app, BrowserWindow} = require('electron');
+
+const storage = require('electron-json-storage');
 
 var mainWindow = null;
 
@@ -18,9 +19,27 @@ app.on('ready', function () {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
+
 });
 
 
 app.on('window-all-closed', function () {
     app.quit();
 });
+
+
+ipcMain.on('loadNewImage', (event) =>
+{
+    let counter = 0;
+
+    storage.get('counter', function(error, data){
+        if (error) throw error;
+
+        console.log(data);
+    });
+
+    storage.set('counter', counter, function(error) {
+        if (error) throw error;
+
+    });
+})

@@ -162,6 +162,8 @@ function recognize(image) {
             _const.DOM.circlePercent.innerHTML = parseInt(p.progress * 100) + "%";
         }
     }).then(function (result) {
+        ipcRenderer.send("loadNewImage");
+
         result.lines.map(function (line) {
             var pContent = line.words.reduce(function (old, actual) {
                 return old + adStyleToElement(actual);

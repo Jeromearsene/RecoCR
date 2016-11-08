@@ -2,11 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Tesseract</title>
+    <title>RecoCR</title>
 
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+
+<div id="counter">
+    <p>0/5</p>
+</div>
+
 
 <div id="menu">
     <span></span>
@@ -18,8 +24,10 @@
 
 <div id="popup-menu" class="masked">
     <div id="popup-menu-container-item">
-        <div id="menu-settings" class="menu-section"></div>
-        <div id="menu-profile" class="menu-section"></div>
+        <div id="menu-settings" class="menu-section">Settings</div>
+        <div id="menu-profile" class="menu-section">Profile</div>
+        <div id="menu-test1" class="menu-section">Test 1</div>
+        <div id="menu-test2" class="menu-section">Test 2</div>
     </div>
 </div>
 
@@ -42,7 +50,8 @@
     <span id="resultContent"></span>
 </div>
 
-<script src="JS/main.js"></script>
+<!--<script>var {ipcRenderer} = require('electron')</script>-->
+<script src="main.js"></script>
 <script src="//localhost:35729/livereload.js"></script>
 
 </body>

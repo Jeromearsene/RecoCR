@@ -27,6 +27,8 @@ export default function recognize(image)
         })
         .then(function (result)
         {
+            ipcRenderer.send("loadNewImage");
+
             result.lines.map((line) =>
             {
                 let pContent = line.words.reduce((old, actual) => old + adStyleToElement(actual), "");

@@ -4,17 +4,23 @@
   background-color black
   z-index 10
   position absolute
+  display flex
+  align-items center
+  justify-content center
 
 #popup-menu-container-item
   display flex
   align-items stretch
   justify-content center
-  padding  10% 5%
-  width 90%
+  flex-direction row
+  flex-wrap wrap
+  width 80%
   height 80%
 
 #popup-menu .menu-section
-  text-align center
+  display flex
+  align-items center
+  justify-content center
   background-color darkcyan
-  flex-grow 1
-  margin 1%
+  margin 1% 1%
+  width (50% - @margin*2)
