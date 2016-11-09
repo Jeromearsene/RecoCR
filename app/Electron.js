@@ -11,11 +11,13 @@ app.on('ready', function () {
 
     // Initialize the window to our specified dimensions
     mainWindow = new BrowserWindow({width, height});
+    //mainWindow.webContents.openDevTools();
+
 
     // Tell Electron where to load the entry point from
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-    // Clear out the main window when the app is closed
+        // Clear out the main window when the app is closed
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
@@ -34,11 +36,14 @@ ipcMain.on('loadNewImage', (event) =>
 
     storage.get('counter', function(error, data){
         if (error) throw error;
-
-        console.log(data);
+        console.log("data: " + JSON.stringify(data));
+        counter ++;
+        console.log(counter);
     });
 
-    storage.set('counter', counter, function(error) {
+    console.log(counter);
+
+    storage.set('counter', {counter: counter}, function(error) {
         if (error) throw error;
 
     });

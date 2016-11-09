@@ -1,6 +1,7 @@
-import {DOM} from './const';
+//import {DOM} from './const';
+const DOM = require('./const')
 
-export default function ()
+module.exports = function ()
 {
     DOM.divResult.className = "";
     DOM.divContainerCircle.className = "masked";

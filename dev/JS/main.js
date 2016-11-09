@@ -1,4 +1,5 @@
-//const {ipcRenderer} = require('electron');
+//import './menu';
+//import './dropzone';
 
-import './menu';
-import './dropzone';
+require('./menu');
+require('./dropzone');

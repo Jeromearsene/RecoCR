@@ -1,10 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var DOM = exports.DOM = {
+module.exports = {
     divResult: document.getElementById('result'),
     divDropzone: document.getElementById('dropzone'),
     divCircle: document.getElementById('circle'),
@@ -20,12 +17,8 @@ var DOM = exports.DOM = {
 },{}],2:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = drawCircle;
-
-var _const = require("./const");
+//import {DOM} from './const';
+var DOM = require('./const');
 
 var emptyColor = "white";
 var loadColor = "#6699f6";
@@ -53,7 +46,7 @@ function drawCircle(progressPercent) {
     lGradient = "linear-gradient(" + lDegree + "deg, " + lColor + " 50%, transparent 50%, transparent),";
     rGradient = "linear-gradient(" + rDegree + "deg, " + lColor + " 50%, " + rColor + " 50%, " + rColor + ")";
 
-    _const.DOM.divCircle.style.backgroundImage = lGradient + rGradient;
+    DOM.divCircle.style.backgroundImage = lGradient + rGradient;
 }
 
 // function testCircle(i)
@@ -68,85 +61,75 @@ function drawCircle(progressPercent) {
 //
 // }
 
+
+module.exports = drawCircle;
+
 },{"./const":1}],3:[function(require,module,exports){
 'use strict';
 
-var _recognize = require('./recognize');
-
-var _recognize2 = _interopRequireDefault(_recognize);
-
-var _const = require('./const');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// import recognize from './recognize';
+var recognize = require('./recognize');
+var DOM = require('./const');
+//import {DOM} from './const';
 
 function handleFileSelect(evt) {
-    _const.DOM.divDropzone.className = "masked";
-    _const.DOM.divCircle.className = "";
-    _const.DOM.labelDropHere.classList.add("masked");
-    _const.DOM.divCircleProgress.classList.remove("masked");
-    _const.DOM.circlePercent.classList.remove("masked");
+    DOM.divDropzone.className = "masked";
+    DOM.divCircle.className = "";
+    DOM.labelDropHere.classList.add("masked");
+    DOM.divCircleProgress.classList.remove("masked");
+    DOM.circlePercent.classList.remove("masked");
 
     var file = evt.target.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
 
     reader.onloadend = function (e) {
-        _const.DOM.divCircleProgress.style.backgroundImage = 'url(\'' + e.target.result + '\')';
-        (0, _recognize2.default)(e.target.result);
+        DOM.divCircleProgress.style.backgroundImage = 'url(\'' + e.target.result + '\')';
+        recognize(e.target.result);
     };
 }
 
-_const.DOM.divDropzone.addEventListener('change', handleFileSelect, false);
+DOM.divDropzone.addEventListener('change', handleFileSelect, false);
 
-_const.DOM.divDropzone.addEventListener("dragenter", function (event) {
-    _const.DOM.divCircle.classList.add("hover");
+DOM.divDropzone.addEventListener("dragenter", function (event) {
+    DOM.divCircle.classList.add("hover");
 });
 
-_const.DOM.divDropzone.addEventListener("dragleave", function (event) {
-    _const.DOM.divCircle.classList.remove("hover");
+DOM.divDropzone.addEventListener("dragleave", function (event) {
+    DOM.divCircle.classList.remove("hover");
 });
 
 },{"./const":1,"./recognize":6}],4:[function(require,module,exports){
 'use strict';
 
-require('./menu');
+//import './menu';
+//import './dropzone';
 
+require('./menu');
 require('./dropzone');
 
 },{"./dropzone":3,"./menu":5}],5:[function(require,module,exports){
 'use strict';
 
-var _const = require('./const');
+//import {DOM} from './const';
+var DOM = require('./const');
 
-_const.DOM.menu.addEventListener('click', function () {
-    if (_const.DOM.menu.className == "open") {
-        _const.DOM.menu.className = "";
-        _const.DOM.popupMenu.className = "masked";
+DOM.menu.addEventListener('click', function () {
+    if (DOM.menu.className == "open") {
+        DOM.menu.className = "";
+        DOM.popupMenu.className = "masked";
     } else {
-        _const.DOM.menu.className = "open";
-        _const.DOM.popupMenu.className = "";
+        DOM.menu.className = "open";
+        DOM.popupMenu.className = "";
     }
 });
 
 },{"./const":1}],6:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = recognize;
-
-var _const = require('./const');
-
-var _result = require('./result');
-
-var _result2 = _interopRequireDefault(_result);
-
-var _drawCircle = require('./drawCircle');
-
-var _drawCircle2 = _interopRequireDefault(_drawCircle);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var DOM = require('./const');
+var displayResult = require('./result');
+var drawCircle = require('./drawCircle');
 
 function recognize(image) {
     var Tesseract = require('tesseract.js');
@@ -156,10 +139,10 @@ function recognize(image) {
     Tesseract.recognize(image).progress(function (p) {
         if (!bool) {
             bool = p.status == "recognizing text";
-            (0, _drawCircle2.default)(0);
+            drawCircle(0);
         } else {
-            (0, _drawCircle2.default)(p.progress * 100);
-            _const.DOM.circlePercent.innerHTML = parseInt(p.progress * 100) + "%";
+            drawCircle(p.progress * 100);
+            DOM.circlePercent.innerHTML = parseInt(p.progress * 100) + "%";
         }
     }).then(function (result) {
         ipcRenderer.send("loadNewImage");
@@ -172,10 +155,10 @@ function recognize(image) {
             var p = document.createElement("p");
             p.innerHTML = pContent;
 
-            _const.DOM.divResultContent.appendChild(p);
+            DOM.divResultContent.appendChild(p);
         });
 
-        (0, _result2.default)();
+        displayResult();
     });
 
     function adStyleToElement(e) {
@@ -190,19 +173,18 @@ function recognize(image) {
     }
 }
 
+module.exports = recognize;
+
 },{"./const":1,"./drawCircle":2,"./result":7,"tesseract.js":14}],7:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+//import {DOM} from './const';
+var DOM = require('./const');
 
-exports.default = function () {
-    _const.DOM.divResult.className = "";
-    _const.DOM.divContainerCircle.className = "masked";
+module.exports = function () {
+    DOM.divResult.className = "";
+    DOM.divContainerCircle.className = "masked";
 };
-
-var _const = require("./const");
 
 },{"./const":1}],8:[function(require,module,exports){
 'use strict';

@@ -1,11 +1,10 @@
-import {DOM} from './const';
-import displayResult from './result';
-import drawCircle from './drawCircle';
+const DOM = require('./const')
+const displayResult = require('./result');
+const drawCircle = require('./drawCircle');
 
-
-export default function recognize(image)
+function recognize(image)
 {
-    var Tesseract = require('tesseract.js');
+    const Tesseract = require('tesseract.js');
 
     let bool = false;
 
@@ -54,3 +53,5 @@ export default function recognize(image)
         return result
     }
 }
+
+module.exports = recognize

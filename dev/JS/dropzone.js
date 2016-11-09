@@ -1,5 +1,7 @@
-import recognize from './recognize';
-import {DOM} from './const';
+// import recognize from './recognize';
+const recognize = require ('./recognize');
+const DOM = require('./const')
+//import {DOM} from './const';
 
 function handleFileSelect(evt)
 {

@@ -1,4 +1,4 @@
-export const DOM = {
+module.exports = {
     divResult: document.getElementById('result'),
     divDropzone: document.getElementById('dropzone'),
     divCircle: document.getElementById('circle'),

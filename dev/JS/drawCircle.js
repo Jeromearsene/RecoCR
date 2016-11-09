@@ -1,4 +1,5 @@
-import {DOM} from './const';
+//import {DOM} from './const';
+const DOM = require('./const')
 
 var emptyColor = "white"
 var loadColor = "#6699f6"
@@ -14,7 +15,7 @@ var rGradient = `linear-gradient(${rDegree}deg, ${lColor} 50%, ${rColor} 50%, ${
 var ratio = 3.6;
 
 
-export default function drawCircle(progressPercent)
+function drawCircle(progressPercent)
 {
     if (progressPercent < 50)
     {
@@ -47,3 +48,6 @@ export default function drawCircle(progressPercent)
 //         }, 50);
 //
 // }
+
+
+module.exports = drawCircle
