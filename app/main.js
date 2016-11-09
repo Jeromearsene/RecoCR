@@ -11,10 +11,20 @@ module.exports = {
     labelDropHere: document.getElementById('dropHere-label'),
     circlePercent: document.getElementById('percent-circle'),
     menu: document.getElementById('menu'),
-    popupMenu: document.getElementById('popup-menu')
+    popupMenu: document.getElementById('popup-menu'),
+    counterContent: document.getElementById('counter-content')
 };
 
 },{}],2:[function(require,module,exports){
+'use strict';
+
+var DOM = require('./const');
+
+ipcRenderer.on('counter', function (event, counter) {
+    DOM.counterContent.innerHTML = counter + '/5';
+});
+
+},{"./const":1}],3:[function(require,module,exports){
 "use strict";
 
 //import {DOM} from './const';
@@ -64,13 +74,11 @@ function drawCircle(progressPercent) {
 
 module.exports = drawCircle;
 
-},{"./const":1}],3:[function(require,module,exports){
+},{"./const":1}],4:[function(require,module,exports){
 'use strict';
 
-// import recognize from './recognize';
 var recognize = require('./recognize');
 var DOM = require('./const');
-//import {DOM} from './const';
 
 function handleFileSelect(evt) {
     DOM.divDropzone.className = "masked";
@@ -99,16 +107,14 @@ DOM.divDropzone.addEventListener("dragleave", function (event) {
     DOM.divCircle.classList.remove("hover");
 });
 
-},{"./const":1,"./recognize":6}],4:[function(require,module,exports){
+},{"./const":1,"./recognize":7}],5:[function(require,module,exports){
 'use strict';
-
-//import './menu';
-//import './dropzone';
 
 require('./menu');
 require('./dropzone');
+require('./counter');
 
-},{"./dropzone":3,"./menu":5}],5:[function(require,module,exports){
+},{"./counter":2,"./dropzone":4,"./menu":6}],6:[function(require,module,exports){
 'use strict';
 
 //import {DOM} from './const';
@@ -124,7 +130,7 @@ DOM.menu.addEventListener('click', function () {
     }
 });
 
-},{"./const":1}],6:[function(require,module,exports){
+},{"./const":1}],7:[function(require,module,exports){
 'use strict';
 
 var DOM = require('./const');
@@ -175,7 +181,7 @@ function recognize(image) {
 
 module.exports = recognize;
 
-},{"./const":1,"./drawCircle":2,"./result":7,"tesseract.js":14}],7:[function(require,module,exports){
+},{"./const":1,"./drawCircle":3,"./result":8,"tesseract.js":15}],8:[function(require,module,exports){
 "use strict";
 
 //import {DOM} from './const';
@@ -186,7 +192,7 @@ module.exports = function () {
     DOM.divContainerCircle.className = "masked";
 };
 
-},{"./const":1}],8:[function(require,module,exports){
+},{"./const":1}],9:[function(require,module,exports){
 'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -271,7 +277,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -453,7 +459,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports={
   "name": "tesseract.js",
   "version": "1.0.10",
@@ -499,7 +505,7 @@ module.exports={
   "homepage": "https://github.com/naptha/tesseract.js"
 }
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (process){
 var defaultOptions = {
     // workerPath: 'https://cdn.rawgit.com/naptha/tesseract.js/0.2.0/dist/worker.js',
@@ -601,7 +607,7 @@ function loadImage(image, cb){
 }
 
 }).call(this,require('_process'))
-},{"../../package.json":10,"_process":9}],12:[function(require,module,exports){
+},{"../../package.json":11,"_process":10}],13:[function(require,module,exports){
 // The result of dump.js is a big JSON tree
 // which can be easily serialized (for instance
 // to be sent from a webworker to the main app
@@ -665,7 +671,7 @@ module.exports = function circularize(page){
     })
     return page
 }
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 const adapter = require('../node/index.js')
 
 let jobCounter = 0;
@@ -748,7 +754,7 @@ module.exports = class TesseractJob {
     }
 }
 
-},{"../node/index.js":11}],14:[function(require,module,exports){
+},{"../node/index.js":12}],15:[function(require,module,exports){
 const adapter = require('./node/index.js')
 const circularize = require('./common/circularize.js')
 const TesseractJob = require('./common/job');
@@ -832,4 +838,4 @@ class TesseractWorker {
 var DefaultTesseract = create()
 
 module.exports = DefaultTesseract
-},{"../package.json":10,"./common/circularize.js":12,"./common/job":13,"./node/index.js":11,"object-assign":8}]},{},[4]);
+},{"../package.json":11,"./common/circularize.js":13,"./common/job":14,"./node/index.js":12,"object-assign":9}]},{},[5]);

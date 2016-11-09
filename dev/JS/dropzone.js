@@ -1,7 +1,5 @@
-// import recognize from './recognize';
 const recognize = require ('./recognize');
 const DOM = require('./const')
-//import {DOM} from './const';
 
 function handleFileSelect(evt)
 {
@@ -11,11 +9,9 @@ function handleFileSelect(evt)
     DOM.divCircleProgress.classList.remove("masked");
     DOM.circlePercent.classList.remove("masked");
 
-
     let file = evt.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-
 
     reader.onloadend = function(e)
     {
@@ -23,6 +19,8 @@ function handleFileSelect(evt)
         recognize(e.target.result)
     }
 }
+
+
 
 DOM.divDropzone.addEventListener('change', handleFileSelect, false);
 

@@ -8,6 +8,7 @@ module.exports = {
     labelDropHere: document.getElementById('dropHere-label'),
     circlePercent: document.getElementById('percent-circle'),
     menu: document.getElementById('menu'),
-    popupMenu: document.getElementById('popup-menu')
+    popupMenu: document.getElementById('popup-menu'),
+    counterContent: document.getElementById('counter-content')
 }
 

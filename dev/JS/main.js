@@ -1,5 +1,3 @@
-//import './menu';
-//import './dropzone';
-
 require('./menu');
 require('./dropzone');
+require('./counter');
