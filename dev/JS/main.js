@@ -1,3 +1,3 @@
-require('./menu');
-require('./dropzone');
-require('./counter');
+require('./interface/counter');
+require('./interface/menu');
+require('./process/dropzone');

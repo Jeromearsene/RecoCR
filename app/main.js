@@ -18,17 +18,40 @@ module.exports = {
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var DOM = require('./const');
+var DOM = require('./../global/const');
 
 ipcRenderer.on('counter', function (event, counter) {
     DOM.counterContent.innerHTML = counter + '/5';
 });
 
-},{"./const":1}],3:[function(require,module,exports){
+},{"./../global/const":1}],3:[function(require,module,exports){
+'use strict';
+
+//import {DOM} from './const';
+var DOM = require('./../global/const');
+
+DOM.menu.addEventListener('click', function () {
+    if (DOM.menu.className == "open") {
+        DOM.menu.className = "";
+        DOM.popupMenu.className = "masked";
+    } else {
+        DOM.menu.className = "open";
+        DOM.popupMenu.className = "";
+    }
+});
+
+},{"./../global/const":1}],4:[function(require,module,exports){
+'use strict';
+
+require('./interface/counter');
+require('./interface/menu');
+require('./process/dropzone');
+
+},{"./interface/counter":2,"./interface/menu":3,"./process/dropzone":6}],5:[function(require,module,exports){
 "use strict";
 
 //import {DOM} from './const';
-var DOM = require('./const');
+var DOM = require('./../global/const');
 
 var emptyColor = "white";
 var loadColor = "#6699f6";
@@ -74,11 +97,11 @@ function drawCircle(progressPercent) {
 
 module.exports = drawCircle;
 
-},{"./const":1}],4:[function(require,module,exports){
+},{"./../global/const":1}],6:[function(require,module,exports){
 'use strict';
 
 var recognize = require('./recognize');
-var DOM = require('./const');
+var DOM = require('./../global/const');
 
 function handleFileSelect(evt) {
     DOM.divDropzone.className = "masked";
@@ -107,33 +130,10 @@ DOM.divDropzone.addEventListener("dragleave", function (event) {
     DOM.divCircle.classList.remove("hover");
 });
 
-},{"./const":1,"./recognize":7}],5:[function(require,module,exports){
+},{"./../global/const":1,"./recognize":7}],7:[function(require,module,exports){
 'use strict';
 
-require('./menu');
-require('./dropzone');
-require('./counter');
-
-},{"./counter":2,"./dropzone":4,"./menu":6}],6:[function(require,module,exports){
-'use strict';
-
-//import {DOM} from './const';
-var DOM = require('./const');
-
-DOM.menu.addEventListener('click', function () {
-    if (DOM.menu.className == "open") {
-        DOM.menu.className = "";
-        DOM.popupMenu.className = "masked";
-    } else {
-        DOM.menu.className = "open";
-        DOM.popupMenu.className = "";
-    }
-});
-
-},{"./const":1}],7:[function(require,module,exports){
-'use strict';
-
-var DOM = require('./const');
+var DOM = require('./../global/const');
 var displayResult = require('./result');
 var drawCircle = require('./drawCircle');
 
@@ -181,18 +181,17 @@ function recognize(image) {
 
 module.exports = recognize;
 
-},{"./const":1,"./drawCircle":3,"./result":8,"tesseract.js":15}],8:[function(require,module,exports){
+},{"./../global/const":1,"./drawCircle":5,"./result":8,"tesseract.js":15}],8:[function(require,module,exports){
 "use strict";
 
-//import {DOM} from './const';
-var DOM = require('./const');
+var DOM = require('./../global/const');
 
 module.exports = function () {
     DOM.divResult.className = "";
     DOM.divContainerCircle.className = "masked";
 };
 
-},{"./const":1}],9:[function(require,module,exports){
+},{"./../global/const":1}],9:[function(require,module,exports){
 'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -838,4 +837,4 @@ class TesseractWorker {
 var DefaultTesseract = create()
 
 module.exports = DefaultTesseract
-},{"../package.json":11,"./common/circularize.js":13,"./common/job":14,"./node/index.js":12,"object-assign":9}]},{},[5]);
+},{"../package.json":11,"./common/circularize.js":13,"./common/job":14,"./node/index.js":12,"object-assign":9}]},{},[4]);

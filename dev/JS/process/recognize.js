@@ -1,4 +1,4 @@
-const DOM = require('./const')
+const DOM = require('./../global/const')
 const displayResult = require('./result');
 const drawCircle = require('./drawCircle');
 

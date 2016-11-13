@@ -1,5 +1,5 @@
 const recognize = require ('./recognize');
-const DOM = require('./const')
+const DOM = require('./../global/const')
 
 function handleFileSelect(evt)
 {

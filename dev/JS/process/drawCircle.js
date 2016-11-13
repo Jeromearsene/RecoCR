@@ -1,5 +1,5 @@
 //import {DOM} from './const';
-const DOM = require('./const')
+const DOM = require('./../global/const')
 
 var emptyColor = "white"
 var loadColor = "#6699f6"

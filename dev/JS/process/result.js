@@ -1,5 +1,4 @@
-//import {DOM} from './const';
-const DOM = require('./const')
+const DOM = require('./../global/const')
 
 module.exports = function ()
 {
