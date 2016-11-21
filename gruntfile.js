@@ -6,8 +6,11 @@ module.exports = function(grunt)
                 options: {
                     transform: [['babelify', {presets: ['es2015']}]]
                 },
-                src: ['dev/JS/main.js'],
-                dest: 'app/main.js',
+
+            files: {
+                'app/main.js': ['dev/JS/main.js'],
+                'app/init.js': ['dev/JS/init.js']
+                }
             }
         },
 

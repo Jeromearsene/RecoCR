@@ -32,7 +32,7 @@ app.on('ready', (event, webContents, request, authInfo, callback) => {
 
     // Initialize the window to our specified dimensions
     mainWindow = new BrowserWindow({width, height});
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
 
     // Tell Electron where to load the entry point from

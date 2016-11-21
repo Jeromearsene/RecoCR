@@ -1,0 +1,20 @@
+{
+  "fr":{
+    "labelDropHere": "Glisser une image ou cliquez ici",
+    "menu": {
+      "Compte": "aze",
+      "Don": "qsd",
+      "Paramètres": "wxc",
+      "A propos": "iop"
+    }
+  },
+  "en":{
+    "labelDropHere": "Drop or click here",
+    "menu": {
+      "Compte": "aze",
+      "Don": "qsd",
+      "Paramètres": "wxc",
+      "A propos": "iop"
+    }
+  }
+}

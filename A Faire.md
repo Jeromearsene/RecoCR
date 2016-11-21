@@ -1,14 +1,5 @@
 # A Faire
 
-* [ ] Gérer le chargement des données
-    => Utiliser le onload event
-    + [ ] Multi-langue
-        > Les données sont dans un JSON
-        > { FR: {...}, EN: {...} }
-    + [ ] Compteur
-
----
-
 * [ ] Limiter le redimensionnement de la fenêtre par rapport à la taille du cercle
 
 ---
@@ -21,3 +12,15 @@
 
 
 # Fait
+
+* [X] Gérer le chargement des données
+    => ~~Utiliser le onload event~~
+    => ~~Utiliser les évènements d'Electron~~
+    <br>
+    
+    + [X] Multi-langue
+        > Les données sont dans un JSON
+        > { FR: {...}, EN: {...} }
+    + [X] Compteur
+
+---
