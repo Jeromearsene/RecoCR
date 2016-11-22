@@ -1711,7 +1711,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@^5.0.15, glob@~5.0.0:
+glob@^5.0.10, glob@^5.0.15, glob@~5.0.0:
   version "5.0.15"
   resolved "https://registry.yarnpkg.com/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
   dependencies:
@@ -2585,7 +2585,14 @@ node-pre-gyp@^0.6.29:
     tar "~2.2.1"
     tar-pack "~3.3.0"
 
-node-uuid@~1.4.0, node-uuid@~1.4.7:
+node-tesseract:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/node-tesseract/-/node-tesseract-0.2.7.tgz#c8f02fb8351a427072735778c0519823f2601b84"
+  dependencies:
+    glob "^5.0.10"
+    node-uuid "^1.4.1"
+
+node-uuid@^1.4.1, node-uuid@~1.4.0, node-uuid@~1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.7.tgz#6da5a17668c4b3dd59623bda11cf7fa4c1f60a6f"
 

@@ -13,13 +13,14 @@ function handleFileSelect(evt)
     let reader = new FileReader();
     reader.readAsDataURL(file);
 
+
+
     reader.onloadend = function(e)
     {
-        DOM.circleProgress.style.backgroundImage = `url('${e.target.result}')`;
+        //DOM.circleProgress.style.backgroundImage = `url('${e.target.result}')`;
         recognize(e.target.result)
     }
 }
-
 
 
 DOM.dropzone.addEventListener('change', handleFileSelect, false);
@@ -31,3 +32,15 @@ DOM.dropzone.addEventListener("dragenter", function( event ) {
 DOM.dropzone.addEventListener("dragleave", function( event ) {
     DOM.circle.classList.remove("hover");
 });
+
+DOM.dropzone.ondrop = (e) =>
+{
+    e.preventDefault();
+
+    for (let f of e.dataTransfer.files) {
+        console.log('File(s) you dragged here: ', f.path)
+        const imagaPath = f.path.replace(/ /g,"\\ ");
+        console.log(imagaPath);
+        ipcRenderer.send('loadImage', imagaPath)
+    }
+}

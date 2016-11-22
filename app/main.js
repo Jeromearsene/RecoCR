@@ -108,7 +108,7 @@ function handleFileSelect(evt) {
     reader.readAsDataURL(file);
 
     reader.onloadend = function (e) {
-        DOM.circleProgress.style.backgroundImage = 'url(\'' + e.target.result + '\')';
+        //DOM.circleProgress.style.backgroundImage = `url('${e.target.result}')`;
         recognize(e.target.result);
     };
 }
@@ -123,6 +123,38 @@ DOM.dropzone.addEventListener("dragleave", function (event) {
     DOM.circle.classList.remove("hover");
 });
 
+DOM.dropzone.ondrop = function (e) {
+    e.preventDefault();
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = e.dataTransfer.files[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var f = _step.value;
+
+            console.log('File(s) you dragged here: ', f.path);
+            var imagaPath = f.path.replace(/ /g, "\\ ");
+            console.log(imagaPath);
+            ipcRenderer.send('loadImage', imagaPath);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+};
+
 },{"./../global/DOM":1,"./recognize":7}],7:[function(require,module,exports){
 'use strict';
 
@@ -132,7 +164,6 @@ var drawCircle = require('./drawCircle');
 
 function recognize(image) {
     var Tesseract = require('tesseract.js');
-
     var bool = false;
 
     Tesseract.recognize(image).progress(function (p) {
@@ -144,7 +175,7 @@ function recognize(image) {
             DOM.circlePercent.innerHTML = parseInt(p.progress * 100) + "%";
         }
     }).then(function (result) {
-        ipcRenderer.send("loadNewImage");
+        ipcRenderer.send("imageLoaded");
 
         result.lines.map(function (line) {
             var pContent = line.words.reduce(function (old, actual) {

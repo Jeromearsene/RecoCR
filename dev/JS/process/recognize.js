@@ -5,7 +5,6 @@ const drawCircle = require('./drawCircle');
 function recognize(image)
 {
     const Tesseract = require('tesseract.js');
-
     let bool = false;
 
     Tesseract.recognize(image)
@@ -22,11 +21,10 @@ function recognize(image)
                 drawCircle(p.progress*100);
                 DOM.circlePercent.innerHTML = parseInt(p.progress*100 )+ "%";
             }
-
         })
         .then(function (result)
         {
-            ipcRenderer.send("loadNewImage");
+            ipcRenderer.send("imageLoaded");
 
             result.lines.map((line) =>
             {

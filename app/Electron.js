@@ -1,6 +1,7 @@
 const electron = require('electron');
 const {ipcMain, app, BrowserWindow} = require('electron');
 
+const tesseract = require('node-tesseract');
 const storage = require('electron-json-storage');
 // storage.clear(function(error) {
 //     if (error) throw error;
@@ -55,7 +56,7 @@ app.on('window-all-closed', function () {
 });
 
 
-ipcMain.on('loadNewImage', (event) =>
+ipcMain.on('imageLoaded', (event) =>
 {
     storage.get('counter', function(error, data)
     {
@@ -72,4 +73,24 @@ ipcMain.on('loadNewImage', (event) =>
             event.sender.send('counter', counter);
         });
     });
+});
+
+
+ipcMain.on('loadImage', (event, imagePath) =>
+{
+    let receive = (new Date()).getTime()
+    // Recognize text of any language in any format
+    tesseract.process(imagePath,function(err, text) {
+        let start = (new Date()).getTime()
+        if(err) {
+            console.error('Erreur: ', err);
+        }
+        else {
+            console.log(text);
+            console.log("Temps: ", ((new Date()).getTime() - start));
+            console.log("Temps global: ", ((new Date()).getTime() - receive));
+        }
+    });
+
+
 })
