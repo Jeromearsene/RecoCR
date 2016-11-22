@@ -1,4 +1,4 @@
-const DOM = require('./../global/const')
+const DOM = require('./../global/DOM')
 const displayResult = require('./result');
 const drawCircle = require('./drawCircle');
 
@@ -35,7 +35,7 @@ function recognize(image)
                 let p = document.createElement("p");
                 p.innerHTML = pContent;
 
-                DOM.divResultContent.appendChild(p);
+                DOM.resultContent.appendChild(p);
             });
 
             displayResult();

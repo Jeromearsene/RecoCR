@@ -1,7 +1,7 @@
-const DOM = require('./../global/const')
+const DOM = require('./../global/DOM')
 
 module.exports = function ()
 {
-    DOM.divResult.className = "";
-    DOM.divContainerCircle.className = "masked";
+    DOM.result.className = "";
+    DOM.containerCircle.className = "masked";
 }

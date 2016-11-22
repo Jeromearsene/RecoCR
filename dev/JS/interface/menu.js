@@ -1,5 +1,5 @@
 //import {DOM} from './const';
-const DOM = require('./../global/const')
+const DOM = require('./../global/DOM')
 
 DOM.menu.addEventListener('click', () =>
 {

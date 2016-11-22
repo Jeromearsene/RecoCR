@@ -1,11 +1,9 @@
-const DOM = require('./global/const')
-const datas = require('./../language.json')
+const DOM = require('./global/DOM')
+const datas = require('./../languages.json')
 
 const language = datas[navigator.language] ? navigator.language : 'en';
 
-console.log(language);
-
-insertDataInDOM('labelDropHere')
+insertDataInDOM('dropHereLabel')
 
 function insertDataInDOM(element)
 {

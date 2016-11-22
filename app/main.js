@@ -1,34 +1,27 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-module.exports = {
-    divResult: document.getElementById('result'),
-    divDropzone: document.getElementById('dropzone'),
-    divCircle: document.getElementById('circle'),
-    divContainerCircle: document.getElementById('container-circle'),
-    divResultContent: document.getElementById('resultContent'),
-    divCircleProgress: document.getElementById('circle-progress'),
-    labelDropHere: document.getElementById('dropHere-label'),
-    circlePercent: document.getElementById('percent-circle'),
-    menu: document.getElementById('menu'),
-    popupMenu: document.getElementById('popup-menu'),
-    counterContent: document.getElementById('counter-content')
-};
+var DOMElementsName = ['result', 'dropzone', 'circle', 'containerCircle', 'resultContent', 'circleProgress', 'dropHereLabel', 'circlePercent', 'menu', 'popupMenu', 'counterContent'];
+
+module.exports = DOMElementsName.reduce(function (acc, elementName) {
+    acc[elementName] = document.getElementById(elementName);
+    return acc;
+}, Object.create(null));
 
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var DOM = require('./../global/const');
+var DOM = require('./../global/DOM');
 
 ipcRenderer.on('counter', function (event, counter) {
     DOM.counterContent.innerHTML = counter + '/5';
 });
 
-},{"./../global/const":1}],3:[function(require,module,exports){
+},{"./../global/DOM":1}],3:[function(require,module,exports){
 'use strict';
 
 //import {DOM} from './const';
-var DOM = require('./../global/const');
+var DOM = require('./../global/DOM');
 
 DOM.menu.addEventListener('click', function () {
     if (DOM.menu.className == "open") {
@@ -40,7 +33,7 @@ DOM.menu.addEventListener('click', function () {
     }
 });
 
-},{"./../global/const":1}],4:[function(require,module,exports){
+},{"./../global/DOM":1}],4:[function(require,module,exports){
 'use strict';
 
 require('./interface/counter');
@@ -51,7 +44,7 @@ require('./process/dropzone');
 "use strict";
 
 //import {DOM} from './const';
-var DOM = require('./../global/const');
+var DOM = require('./../global/DOM');
 
 var emptyColor = "white";
 var loadColor = "#6699f6";
@@ -79,7 +72,7 @@ function drawCircle(progressPercent) {
     lGradient = "linear-gradient(" + lDegree + "deg, " + lColor + " 50%, transparent 50%, transparent),";
     rGradient = "linear-gradient(" + rDegree + "deg, " + lColor + " 50%, " + rColor + " 50%, " + rColor + ")";
 
-    DOM.divCircle.style.backgroundImage = lGradient + rGradient;
+    DOM.circle.style.backgroundImage = lGradient + rGradient;
 }
 
 // function testCircle(i)
@@ -97,17 +90,17 @@ function drawCircle(progressPercent) {
 
 module.exports = drawCircle;
 
-},{"./../global/const":1}],6:[function(require,module,exports){
+},{"./../global/DOM":1}],6:[function(require,module,exports){
 'use strict';
 
 var recognize = require('./recognize');
-var DOM = require('./../global/const');
+var DOM = require('./../global/DOM');
 
 function handleFileSelect(evt) {
-    DOM.divDropzone.className = "masked";
-    DOM.divCircle.className = "";
-    DOM.labelDropHere.classList.add("masked");
-    DOM.divCircleProgress.classList.remove("masked");
+    DOM.dropzone.className = "masked";
+    DOM.circle.className = "";
+    DOM.dropHereLabel.classList.add("masked");
+    DOM.circleProgress.classList.remove("masked");
     DOM.circlePercent.classList.remove("masked");
 
     var file = evt.target.files[0];
@@ -115,25 +108,25 @@ function handleFileSelect(evt) {
     reader.readAsDataURL(file);
 
     reader.onloadend = function (e) {
-        DOM.divCircleProgress.style.backgroundImage = 'url(\'' + e.target.result + '\')';
+        DOM.circleProgress.style.backgroundImage = 'url(\'' + e.target.result + '\')';
         recognize(e.target.result);
     };
 }
 
-DOM.divDropzone.addEventListener('change', handleFileSelect, false);
+DOM.dropzone.addEventListener('change', handleFileSelect, false);
 
-DOM.divDropzone.addEventListener("dragenter", function (event) {
-    DOM.divCircle.classList.add("hover");
+DOM.dropzone.addEventListener("dragenter", function (event) {
+    DOM.circle.classList.add("hover");
 });
 
-DOM.divDropzone.addEventListener("dragleave", function (event) {
-    DOM.divCircle.classList.remove("hover");
+DOM.dropzone.addEventListener("dragleave", function (event) {
+    DOM.circle.classList.remove("hover");
 });
 
-},{"./../global/const":1,"./recognize":7}],7:[function(require,module,exports){
+},{"./../global/DOM":1,"./recognize":7}],7:[function(require,module,exports){
 'use strict';
 
-var DOM = require('./../global/const');
+var DOM = require('./../global/DOM');
 var displayResult = require('./result');
 var drawCircle = require('./drawCircle');
 
@@ -161,7 +154,7 @@ function recognize(image) {
             var p = document.createElement("p");
             p.innerHTML = pContent;
 
-            DOM.divResultContent.appendChild(p);
+            DOM.resultContent.appendChild(p);
         });
 
         displayResult();
@@ -181,17 +174,17 @@ function recognize(image) {
 
 module.exports = recognize;
 
-},{"./../global/const":1,"./drawCircle":5,"./result":8,"tesseract.js":15}],8:[function(require,module,exports){
+},{"./../global/DOM":1,"./drawCircle":5,"./result":8,"tesseract.js":15}],8:[function(require,module,exports){
 "use strict";
 
-var DOM = require('./../global/const');
+var DOM = require('./../global/DOM');
 
 module.exports = function () {
-    DOM.divResult.className = "";
-    DOM.divContainerCircle.className = "masked";
+    DOM.result.className = "";
+    DOM.containerCircle.className = "masked";
 };
 
-},{"./../global/const":1}],9:[function(require,module,exports){
+},{"./../global/DOM":1}],9:[function(require,module,exports){
 'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;

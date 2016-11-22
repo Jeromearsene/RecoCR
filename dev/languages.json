@@ -1,6 +1,6 @@
 {
   "fr":{
-    "labelDropHere": "Glisser une image ou cliquez ici",
+    "dropHereLabel": "Déposez une image ou cliquez ici",
     "menu": {
       "Compte": "aze",
       "Don": "qsd",
@@ -9,7 +9,7 @@
     }
   },
   "en":{
-    "labelDropHere": "Drop or click here",
+    "dropHereLabel": "Drop or click here",
     "menu": {
       "Compte": "aze",
       "Don": "qsd",

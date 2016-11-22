@@ -1,5 +1,5 @@
 //import {DOM} from './const';
-const DOM = require('./../global/const')
+const DOM = require('./../global/DOM')
 
 var emptyColor = "white"
 var loadColor = "#6699f6"
@@ -33,7 +33,7 @@ function drawCircle(progressPercent)
     lGradient = `linear-gradient(${lDegree}deg, ${lColor} 50%, transparent 50%, transparent),`;
     rGradient = `linear-gradient(${rDegree}deg, ${lColor} 50%, ${rColor} 50%, ${rColor})`;
 
-    DOM.divCircle.style.backgroundImage = lGradient + rGradient;
+    DOM.circle.style.backgroundImage = lGradient + rGradient;
 }
 
 
