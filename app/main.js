@@ -151,6 +151,7 @@ function recognize(image) {
     var bool = false;
 
     Tesseract.recognize(image).progress(function (p) {
+        console.log(p);
         if (!bool) {
             bool = p.status == "recognizing text";
             drawCircle(0);

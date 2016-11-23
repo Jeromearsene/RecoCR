@@ -9,6 +9,7 @@ function recognize(image)
     Tesseract.recognize(image)
         .progress(function (p)
         {
+            console.log(p);
             if (!bool)
             {
                 bool = (p.status == "recognizing text");

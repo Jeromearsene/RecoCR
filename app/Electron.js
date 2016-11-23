@@ -1,7 +1,6 @@
 const electron = require('electron');
 const {ipcMain, app, BrowserWindow} = require('electron');
 
-const tesseract = require('node-tesseract');
 const storage = require('electron-json-storage');
 // storage.clear(function(error) {
 //     if (error) throw error;
