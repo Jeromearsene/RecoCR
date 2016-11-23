@@ -30,7 +30,6 @@
     "electron": "^1.4.5",
     "electron-compile": "^3.3.6",
     "electron-json-storage": "^2.0.3",
-    "node-tesseract": "^0.2.7",
     "tesseract.js": "^1.0.10"
   },
   "scripts": {

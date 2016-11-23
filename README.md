@@ -4,13 +4,21 @@ A software for recognize image (OCR) who use TesseractJS
 <br><br>
 
 
+
+
 # A Faire
 
 * [ ] Limiter le redimensionnement de la fenêtre par rapport à la taille du cercle
 
 ---
 
-* [ ] Choisir entre Tesseract Node ou Navigateur
+
+
+
+# Fait
+
+
+* [X] Choisir entre Tesseract Node ou Navigateur
     **Node**
         + Fonctionne en local
         - Pas de récupération de la progression
@@ -19,11 +27,10 @@ A software for recognize image (OCR) who use TesseractJS
     **Navigateur**
         + Récupération de la progression
         - Ne fonctionne en local
-
-
-
-
-# Fait
+        
+    => Choix du navigateur avec les langages en local
+    
+---
 
 * [X] Regarder Tesseract en version C++
     + version embarquée

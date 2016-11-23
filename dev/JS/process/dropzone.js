@@ -1,29 +1,22 @@
 const recognize = require ('./recognize');
 const DOM = require('./../global/DOM')
 
-function handleFileSelect(evt)
+
+DOM.dropzone.ondrop = (e) =>
 {
-    DOM.dropzone.className = "masked";
-    DOM.circle.className = "";
-    DOM.dropHereLabel.classList.add("masked");
-    DOM.circleProgress.classList.remove("masked");
-    DOM.circlePercent.classList.remove("masked");
+    e.preventDefault();
 
-    let file = evt.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
+    for (let f of e.dataTransfer.files) {
+        DOM.circle.className = "";
+        DOM.dropzone.classList.add("masked");
+        DOM.dropHereLabel.classList.add("masked");
+        DOM.circleProgress.classList.remove("masked");
+        DOM.circlePercent.classList.remove("masked");
 
-
-
-    reader.onloadend = function(e)
-    {
-        //DOM.circleProgress.style.backgroundImage = `url('${e.target.result}')`;
-        recognize(e.target.result)
+        DOM.circleProgress.style.backgroundImage = `url('${f.path}')`;
+        recognize(f.path)
     }
 }
-
-
-DOM.dropzone.addEventListener('change', handleFileSelect, false);
 
 DOM.dropzone.addEventListener("dragenter", function( event ) {
     DOM.circle.classList.add("hover");
@@ -32,15 +25,3 @@ DOM.dropzone.addEventListener("dragenter", function( event ) {
 DOM.dropzone.addEventListener("dragleave", function( event ) {
     DOM.circle.classList.remove("hover");
 });
-
-DOM.dropzone.ondrop = (e) =>
-{
-    e.preventDefault();
-
-    for (let f of e.dataTransfer.files) {
-        console.log('File(s) you dragged here: ', f.path)
-        const imagaPath = f.path.replace(/ /g,"\\ ");
-        console.log(imagaPath);
-        ipcRenderer.send('loadImage', imagaPath)
-    }
-}

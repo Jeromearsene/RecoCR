@@ -4,7 +4,6 @@ const drawCircle = require('./drawCircle');
 
 function recognize(image)
 {
-    const Tesseract = require('tesseract.js');
     let bool = false;
 
     Tesseract.recognize(image)
@@ -24,8 +23,6 @@ function recognize(image)
         })
         .then(function (result)
         {
-            ipcRenderer.send("imageLoaded");
-
             result.lines.map((line) =>
             {
                 let pContent = line.words.reduce((old, actual) => old + adStyleToElement(actual), "");
