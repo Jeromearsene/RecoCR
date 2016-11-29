@@ -8,19 +8,25 @@ A software for recognize image (OCR) who use TesseractJS
 
 # A Faire
 
+* [ ] Problème de temps de chargement de l'image, avant même que la reconnaissance ne débute
+
+___
+
 * [ ] Limiter le redimensionnement de la fenêtre par rapport à la taille du cercle
-
----
-
-* [ ] Passer tous les fichiers de langue en .gz
-    => Sinon il télécharge le fichier dont il a besoin
-    
-    **Vérifier d'abord si il n'est pas possible de changer le dossier de scan**
-
 
 
 
 # Fait
+
+
+* [X] Passer tous les fichiers de langue en .gz
+    => Sinon il télécharge le fichier dont il a besoin
+
+    **Vérifier d'abord si il n'est pas possible de changer le dossier de scan**
+
+    => Pour l'instant j'ai mis toutes les langues à la racine
+
+___
 
 
 * [X] Choisir entre Tesseract Node ou Navigateur

@@ -148,9 +148,11 @@ var displayResult = require('./result');
 var drawCircle = require('./drawCircle');
 
 function recognize(image) {
+    var start = new Date().getTime();
     var bool = false;
 
     Tesseract.recognize(image).progress(function (p) {
+        console.log(new Date().getTime() - start);
         console.log(p);
         if (!bool) {
             bool = p.status == "recognizing text";
@@ -170,7 +172,7 @@ function recognize(image) {
 
             DOM.resultContent.appendChild(p);
         });
-
+        ipcRenderer.send("loadNewImage");
         displayResult();
     });
 

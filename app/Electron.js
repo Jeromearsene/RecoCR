@@ -12,9 +12,8 @@ let counter;
 storage.has('counter', function(error, hasKey) {
     if (error) throw error;
 
-    if (!hasKey) {
+    if (!hasKey)
         counter = 0;
-    }
 
     else
     {
@@ -52,4 +51,30 @@ app.on('ready', (event, webContents, request, authInfo, callback) => {
 
 app.on('window-all-closed', function () {
     app.quit();
+});
+
+
+ipcMain.on('loadNewImage', (event) =>
+{
+    storage.get('counter', function (error, data)
+    {
+        if (error)
+            throw error
+        else
+        {
+            const counterUpdated = ++data;
+            storage.set('counter', counterUpdated, function (error)
+            {
+                if (error)
+                    throw error;
+                else
+                {
+                    event.sender.send('counter', counterUpdated);
+                    counter = counterUpdated;
+                }
+            });
+        }
+    })
+
+
 });

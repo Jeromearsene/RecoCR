@@ -4,11 +4,13 @@ const drawCircle = require('./drawCircle');
 
 function recognize(image)
 {
+    const start = (new Date()).getTime()
     let bool = false;
 
     Tesseract.recognize(image)
         .progress(function (p)
         {
+            console.log((new Date()).getTime() - start);
             console.log(p);
             if (!bool)
             {
@@ -26,20 +28,20 @@ function recognize(image)
         {
             result.lines.map((line) =>
             {
-                let pContent = line.words.reduce((old, actual) => old + adStyleToElement(actual), "");
+                const pContent = line.words.reduce((old, actual) => old + adStyleToElement(actual), "");
 
-                let p = document.createElement("p");
+                const p = document.createElement("p");
                 p.innerHTML = pContent;
 
                 DOM.resultContent.appendChild(p);
             });
-
+            ipcRenderer.send("loadNewImage");
             displayResult();
         })
 
     function adStyleToElement(e)
     {
-        let result = `${e.text} `;
+        const result = `${e.text} `;
 
         /*if (e.is_bold)
             result = `<b>${result}</b>`
