@@ -44,7 +44,7 @@ app.on('ready', (event, webContents, request, authInfo, callback) => {
 
     // Clear out the main window when the app is closed
     mainWindow.on('closed', function () {
-        mainWindow = null;
+        mainWindow = null
     });
 
 });
@@ -53,4 +53,3 @@ app.on('ready', (event, webContents, request, authInfo, callback) => {
 app.on('window-all-closed', function () {
     app.quit();
 });
-

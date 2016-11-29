@@ -14,6 +14,8 @@ A software for recognize image (OCR) who use TesseractJS
 
 * [ ] Passer tous les fichiers de langue en .gz
     => Sinon il télécharge le fichier dont il a besoin
+    
+    **Vérifier d'abord si il n'est pas possible de changer le dossier de scan**
 
 
 
