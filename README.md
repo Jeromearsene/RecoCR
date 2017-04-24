@@ -1,16 +1,16 @@
-#RecoCR
+# RecoCR
 
 A software for recognize image (OCR) who use TesseractJS
 <br><br>
 
 
 
+Le développement est à présent arrêté, la librairie Javascript utilisé étant trop lente pour être utilisé en production.
+Autre soucis, mineur, si la langue n'est pas présente à la racine du projet, la librairie la télécharge.
+Il faut donc au préalable charger toutes les langues à la racine, ce qui n'est pas très propre, ou arriver à chnager le chemin d'accès aux dictionnaires afin de pouvoir les mettre dans un dossier à part.
+
 
 # A Faire
-
-* [ ] Problème de temps de chargement de l'image, avant même que la reconnaissance ne débute
-
-___
 
 * [ ] Limiter le redimensionnement de la fenêtre par rapport à la taille du cercle
 
@@ -23,8 +23,9 @@ ___
     => Sinon il télécharge le fichier dont il a besoin
 
     **Vérifier d'abord si il n'est pas possible de changer le dossier de scan**
+        -> il va certainement falloir forker
 
-    => Pour l'instant j'ai mis toutes les langues à la racine
+    => Possibilité de charger toutes les langues à la racine du projet
 
 ___
 
