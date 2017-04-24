@@ -5,9 +5,9 @@ A software for recognize image (OCR) who use TesseractJS
 
 
 
-Le développement est à présent arrêté, la librairie Javascript utilisé étant trop lente pour être utilisé en production.
-Autre soucis, mineur, si la langue n'est pas présente à la racine du projet, la librairie la télécharge.
-Il faut donc au préalable charger toutes les langues à la racine, ce qui n'est pas très propre, ou arriver à chnager le chemin d'accès aux dictionnaires afin de pouvoir les mettre dans un dossier à part.
+Le développement est à présent arrêté, la librairie Javascript utilisée étant trop lente pour être utilisée en production.
+Autre soucis, mineur, si la langue n'est pas présente à la racine du projet, la librairie JS actuelle la télécharge.
+Il faut donc au préalable charger toutes les langues à la racine, ce qui n'est pas très "propre", ou arriver à changer le chemin d'accès aux dictionnaires de langue afin de pouvoir les mettre dans un dossier à part.
 
 
 
