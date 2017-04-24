@@ -10,6 +10,17 @@ Autre soucis, mineur, si la langue n'est pas présente à la racine du projet, l
 Il faut donc au préalable charger toutes les langues à la racine, ce qui n'est pas très propre, ou arriver à chnager le chemin d'accès aux dictionnaires afin de pouvoir les mettre dans un dossier à part.
 
 
+
+
+## Premiers pas
+
+1- Télécharger le projet
+2- Entrez dans le projet via le terminal: `cd ~/RecoCR`
+3- Installez les modules nécessaires: `npm install`
+4- Lancez l'application: `npm run start`
+
+<br><br>
+
 # A Faire
 
 * [ ] Limiter le redimensionnement de la fenêtre par rapport à la taille du cercle
